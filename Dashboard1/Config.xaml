@@ -1,0 +1,483 @@
+﻿<Page x:Class="Dashboard1.Config"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Dashboard1"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      Title="Config">
+
+    <Page.Resources>
+        <SolidColorBrush x:Key="colorFondo"  Color="#FFFFFF"></SolidColorBrush>
+    </Page.Resources>
+
+    <Grid Margin="30">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel  Grid.Column="1" Background="#7bed9f" Margin="5" Opacity="0.50">
+            <TreeView x:Name="tree_uno" Foreground="Black" VerticalAlignment="Center">
+                <TreeView.Resources>
+                    <ControlTemplate x:Key="BulletTemplate" TargetType="{x:Type ContentControl}">
+                        <BulletDecorator>
+                            <BulletDecorator.Bullet>
+                                <Ellipse Height="10" Width="10" Fill="Black"/>
+                            </BulletDecorator.Bullet>
+                            <ContentPresenter Margin="3,0,0,0"/>
+                        </BulletDecorator>
+                    </ControlTemplate>
+                </TreeView.Resources>
+                <TreeViewItem Foreground="Black" FontWeight="Bold" x:Name="tienda_item">
+                    <TreeViewItem.HeaderTemplate>
+                        <DataTemplate>
+                            <Grid Width="155">
+                                <materialDesign:PackIcon Kind="Storefront" />
+                                <TextBlock Text="{ Binding ElementName=tienda,Path=Text}" Margin="28,0,0,0"  FontWeight="Bold" />
+                            </Grid>
+                        </DataTemplate>
+                    </TreeViewItem.HeaderTemplate>
+                    <!--<TreeViewItem>
+                        <TreeViewItem.HeaderTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <materialDesign:PackIcon Kind="ArrowLeftRightBold" />
+                                    <TextBlock Text="NUMERO PASILLO" Margin="28,0,0,0"  FontWeight="Bold" />
+                                </Grid>
+                            </DataTemplate>
+                        </TreeViewItem.HeaderTemplate>
+                        <TreeViewItem>
+                            <TreeViewItem.HeaderTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <materialDesign:PackIcon Kind="Bookshelf" />
+                                        <TextBlock Text="ESTANTE" Margin="28,0,0,0"  FontWeight="Bold" />
+                                    </Grid>
+                                </DataTemplate>
+                            </TreeViewItem.HeaderTemplate>
+                            <TreeViewItem>
+                                <TreeViewItem.HeaderTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <materialDesign:PackIcon Kind="FormatLineWeight" />
+                                            <TextBlock Text="NIVELES DE PASILLO" Margin="28,0,0,0"  FontWeight="Bold" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </TreeViewItem.HeaderTemplate>
+                                <TreeViewItem>
+                                    <TreeViewItem.HeaderTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <materialDesign:PackIcon Kind="Cart" />
+                                                <TextBlock Text="FAMILIA DE PRODUCTOS" Margin="28,0,0,0"  FontWeight="Bold" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </TreeViewItem.HeaderTemplate>
+                                    <TreeViewItem>
+                                        <TreeViewItem.HeaderTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <materialDesign:PackIcon Kind="Label" />
+                                                    <TextBlock Text="MARCA DE PRODUCTOS" Margin="28,0,0,0"  FontWeight="Bold" />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </TreeViewItem.HeaderTemplate>
+                                        <TreeViewItem>
+                                            <TreeViewItem.HeaderTemplate>
+                                                <DataTemplate>
+                                                    <Grid>
+                                                        <materialDesign:PackIcon Kind="Stairs" />
+                                                        <TextBlock Text="PRODUCTOS POR NIVEL" Margin="28,0,0,0"  FontWeight="Bold" />
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </TreeViewItem.HeaderTemplate>
+                                        </TreeViewItem>
+                                    </TreeViewItem>
+                                </TreeViewItem>
+                            </TreeViewItem>
+                        </TreeViewItem>
+                    </TreeViewItem>-->
+                </TreeViewItem>
+            </TreeView>
+        </StackPanel>
+        <TabControl Margin="5" TabStripPlacement="Left" Grid.Column="0">
+            <TabControl.Resources>
+                <Style TargetType="{x:Type TabItem}">
+                    <Setter Property="HeaderTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <ContentPresenter Content="{TemplateBinding Content}">
+                                    <ContentPresenter.LayoutTransform>
+                                        <RotateTransform Angle="270" />
+                                    </ContentPresenter.LayoutTransform>
+                                </ContentPresenter>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Padding" Value="3" />
+                </Style>
+            </TabControl.Resources>
+            <TabItem Height="97.5"  Header="Pasillo">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0">
+                        <StackPanel Margin="10">
+                            <Label FontWeight="Bold" HorizontalAlignment="Left">TIENDA</Label>
+                            <Border Padding="5" CornerRadius="5"  BorderThickness="1" BorderBrush="LightGray" SnapsToDevicePixels="True" Background="White">
+                                <ComboBox Background="White" x:Name="tienda"  BorderThickness="0">
+                                    <ComboBoxItem >JBA</ComboBoxItem>
+                                    <ComboBoxItem >31 JLO</ComboBoxItem>
+                                    <ComboBoxItem >TERRANOVA</ComboBoxItem>
+                                    <ComboBoxItem >PLAYA EL ÁNGEL</ComboBoxItem>
+                                    <ComboBoxItem >MATURÍN</ComboBoxItem>
+                                    <ComboBoxItem >PALMA</ComboBoxItem>
+                                </ComboBox>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Margin="10">
+                            <Label FontWeight="Bold" HorizontalAlignment="Left">NÚMERO</Label>
+                            <Border Padding="5" CornerRadius="5"  BorderThickness="1" BorderBrush="LightGray" SnapsToDevicePixels="True" Background="White">
+                                <ComboBox  Background="{StaticResource colorFondo}" x:Name="numero"  BorderThickness="0">
+                                    <ComboBoxItem >NRO.1</ComboBoxItem>
+                                    <ComboBoxItem >NRO.2</ComboBoxItem>
+                                    <ComboBoxItem >NRO.3</ComboBoxItem>
+                                    <ComboBoxItem >NRO.4</ComboBoxItem>
+                                    <ComboBoxItem >NRO.5</ComboBoxItem>
+                                </ComboBox>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Margin="10">
+                            <Label FontWeight="Bold" HorizontalAlignment="Left">LISTA DE CATEGORÍAS</Label>
+                            <Border Padding="5" CornerRadius="5"  BorderThickness="1" BorderBrush="LightGray" SnapsToDevicePixels="True" Background="White">
+                                <ComboBox  Background="{StaticResource colorFondo}" x:Name="categoria"  BorderThickness="0">
+                                    <ComboBoxItem >FARMACIA</ComboBoxItem>
+                                    <ComboBoxItem >VIVERES</ComboBoxItem>
+                                    <ComboBoxItem >CARNICEÍA</ComboBoxItem>
+                                    <ComboBoxItem >CHARCUTERÍA</ComboBoxItem>
+                                </ComboBox>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Margin="10">
+                            <Label FontWeight="Bold" HorizontalAlignment="Left">ESTATUS</Label>
+                            <Border Padding="5" CornerRadius="5"  BorderThickness="1" BorderBrush="LightGray" SnapsToDevicePixels="True" Background="White">
+                                <ComboBox  Background="{StaticResource colorFondo}" x:Name="estatus"  BorderThickness="0">
+                                    <ComboBoxItem >ABIERTO</ComboBoxItem>
+                                    <ComboBoxItem >CERRADO</ComboBoxItem>
+                                </ComboBox>
+                            </Border>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                        <Button Margin="10" Cursor="Hand" x:Name="btn_limpiar_pasillo" BorderBrush="Transparent"    Foreground="#f1f2f6"   Width="90" Style="{x:Null}" Content="LIMPIAR">
+                            <Button.Template >
+                                <ControlTemplate TargetType="{x:Type Button}" >
+                                    <Border Padding="5" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2" CornerRadius="5">
+                                        <Border.Background>
+                                            <Brush>#009432</Brush>
+                                        </Border.Background>
+                                        <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button Margin="10" Cursor="Hand" x:Name="btn_agregar_pasillo" BorderBrush="Transparent" Click="btn_agregar_pasillo_Click"  Foreground="#f1f2f6"   Width="90" Style="{x:Null}" Content="AGREGAR">
+                            <Button.Template >
+                                <ControlTemplate TargetType="{x:Type Button}" >
+                                    <Border Padding="5" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2" CornerRadius="5">
+                                        <Border.Background>
+                                            <Brush>#009432</Brush>
+                                        </Border.Background>
+                                        <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Height="97.5" Header="Estante">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="33*"></RowDefinition>
+                        <RowDefinition Height="18*"/>
+                        <RowDefinition Height="92*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0">
+                        <StackPanel Margin="10">
+                            <Label FontWeight="Bold" HorizontalAlignment="Left">TRAMO</Label>
+                            <Border Padding="5" CornerRadius="5"  BorderThickness="1" BorderBrush="LightGray" SnapsToDevicePixels="True" Background="White">
+                                <ComboBox  Background="{StaticResource colorFondo}" x:Name="tramo"  BorderThickness="0">
+                                    <ComboBoxItem >T-1</ComboBoxItem>
+                                    <ComboBoxItem >T-2</ComboBoxItem>
+                                    <ComboBoxItem >T-3</ComboBoxItem>
+                                </ComboBox>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Margin="10">
+                            <Label FontWeight="Bold" HorizontalAlignment="Left">CARA</Label>
+                            <Border Padding="5" CornerRadius="5"  BorderThickness="1" BorderBrush="LightGray" SnapsToDevicePixels="True" Background="White">
+                                <ComboBox  Background="{StaticResource colorFondo}" x:Name="cara"  BorderThickness="0">
+                                    <ComboBoxItem >CARA-A</ComboBoxItem>
+                                    <ComboBoxItem >CARA-B</ComboBoxItem>
+                                </ComboBox>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Margin="10">
+                            <Label FontWeight="Bold"   HorizontalAlignment="Left">REFRIGERACIÓN</Label>
+                            <DockPanel LastChildFill="False">
+                                <RadioButton Margin="5" Background="#009432" x:Name="refri_si" Content="Si"></RadioButton>
+                                <RadioButton Margin="5" Background="#009432" x:Name="refri_no" Content="No"></RadioButton>
+                            </DockPanel>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                        <Button Margin="10" Cursor="Hand" x:Name="btn_limpiar_estante" BorderBrush="Transparent"    Foreground="#f1f2f6"   Width="90" Style="{x:Null}" Content="LIMPIAR">
+                            <Button.Template >
+                                <ControlTemplate TargetType="{x:Type Button}" >
+                                    <Border Padding="5" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2" CornerRadius="5">
+                                        <Border.Background>
+                                            <Brush>#009432</Brush>
+                                        </Border.Background>
+                                        <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button Margin="10" Cursor="Hand" x:Name="btn_agregar_estante" BorderBrush="Transparent"    Foreground="#f1f2f6"   Width="90" Style="{x:Null}" Content="AGREGAR">
+                            <Button.Template >
+                                <ControlTemplate TargetType="{x:Type Button}" >
+                                    <Border Padding="5" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2" CornerRadius="5">
+                                        <Border.Background>
+                                            <Brush>#009432</Brush>
+                                        </Border.Background>
+                                        <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Height="97.5" Header="Nivel">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="59*"/>
+                            <RowDefinition Height="237*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Grid.RowSpan="2">
+                            <StackPanel Margin="10">
+                                <Label FontWeight="Bold" HorizontalAlignment="Left">CÓDIGO</Label>
+                                <Border Padding="5" CornerRadius="5"  BorderThickness="1" BorderBrush="LightGray" SnapsToDevicePixels="True" Background="White">
+                                    <TextBox  CharacterCasing="Upper" x:Name="codigo"   Style="{x:Null}" Background="Transparent" BorderThickness="0"></TextBox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel Margin="10">
+                                <Label FontWeight="Bold" HorizontalAlignment="Left">ALTURA</Label>
+                                <Border Padding="5" CornerRadius="5"  BorderThickness="1" BorderBrush="LightGray" SnapsToDevicePixels="True" Background="White">
+                                    <TextBox  CharacterCasing="Upper" x:Name="altura"   Style="{x:Null}" Background="Transparent" BorderThickness="0"></TextBox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel Margin="10">
+                                <Label FontWeight="Bold" HorizontalAlignment="Left">LARGO</Label>
+                                <Border  Padding="5" CornerRadius="5"  BorderThickness="1" BorderBrush="LightGray" SnapsToDevicePixels="True" Background="White">
+                                    <TextBox CharacterCasing="Upper"   x:Name="largo"   Style="{x:Null}" Background="Transparent" BorderThickness="0"></TextBox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel Margin="10">
+                                <Label FontWeight="Bold" HorizontalAlignment="Left">PROFUNDIDAD</Label>
+                                <Border Padding="5" CornerRadius="5"  BorderThickness="1" BorderBrush="LightGray" SnapsToDevicePixels="True" Background="White">
+                                    <TextBox  CharacterCasing="Upper" x:Name="profundidad_nivel"   Style="{x:Null}" Background="Transparent" BorderThickness="0"></TextBox>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Grid.RowSpan="2">
+                            <StackPanel Margin="10">
+                                <Label FontWeight="Bold" HorizontalAlignment="Left">GRUPO</Label>
+                                <Border Padding="5" CornerRadius="5"  BorderThickness="1" BorderBrush="LightGray" SnapsToDevicePixels="True" Background="White">
+                                    <ComboBox   Background="{StaticResource colorFondo}" x:Name="grupo"  BorderThickness="0">
+                                        <ComboBoxItem >GRUPO-A</ComboBoxItem>
+                                        <ComboBoxItem >GRUPO-B</ComboBoxItem>
+                                    </ComboBox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel Margin="8" Height="51">
+                                <Label FontWeight="Bold"   HorizontalAlignment="Left">STOCK</Label>
+                                <DockPanel LastChildFill="False">
+                                    <RadioButton Margin="5" Background="#009432" x:Name="stock_si" Content="Si"></RadioButton>
+                                    <RadioButton Margin="5" Background="#009432" x:Name="stock_no" Content="No"></RadioButton>
+                                </DockPanel>
+                            </StackPanel>
+                            <StackPanel Margin="10">
+                                <Label FontWeight="Bold" HorizontalAlignment="Left">LIST.PROD</Label>
+                                <Border Padding="5" CornerRadius="5"  BorderThickness="1" BorderBrush="LightGray" SnapsToDevicePixels="True" Background="White">
+                                    <ComboBox Background="{StaticResource colorFondo}" x:Name="list_prod"  BorderThickness="0">
+                                        <ComboBoxItem>HARINA</ComboBoxItem>
+                                        <ComboBoxItem >ACEITE</ComboBoxItem>
+                                    </ComboBox>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                        <Button Margin="10" Cursor="Hand" x:Name="btn_limpiar_nivel" BorderBrush="Transparent"    Foreground="#f1f2f6"   Width="90" Style="{x:Null}" Content="LIMPIAR">
+                            <Button.Template >
+                                <ControlTemplate TargetType="{x:Type Button}" >
+                                    <Border Padding="5" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2" CornerRadius="5">
+                                        <Border.Background>
+                                            <Brush>#009432</Brush>
+                                        </Border.Background>
+                                        <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button Margin="10" Cursor="Hand" x:Name="btn_agregar_nivel" BorderBrush="Transparent"    Foreground="#f1f2f6"   Width="90" Style="{x:Null}" Content="AGREGAR">
+                            <Button.Template >
+                                <ControlTemplate TargetType="{x:Type Button}" >
+                                    <Border Padding="5" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2" CornerRadius="5">
+                                        <Border.Background>
+                                            <Brush>#009432</Brush>
+                                        </Border.Background>
+                                        <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Height="97.5" Header="Prod.Anaquel">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="131*"/>
+                            <RowDefinition Height="17*"/>
+                            <RowDefinition Height="113*"/>
+                            <RowDefinition Height="130*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Grid.RowSpan="4" Margin="0,0,0,-1">
+                            <StackPanel Margin="10">
+                                <Label FontWeight="Bold" HorizontalAlignment="Left">MARCAS</Label>
+                                <Border Padding="5" CornerRadius="5"  BorderThickness="1" BorderBrush="LightGray" SnapsToDevicePixels="True" Background="White">
+                                    <ComboBox   Background="{StaticResource colorFondo}" x:Name="marcas"  BorderThickness="0">
+                                        <ComboBoxItem >GRUPO-A</ComboBoxItem>
+                                        <ComboBoxItem >GRUPO-B</ComboBoxItem>
+                                    </ComboBox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel Margin="10">
+                                <Label FontWeight="Bold" HorizontalAlignment="Left">PRODUCTOS</Label>
+                                <Border Padding="5" CornerRadius="5"  BorderThickness="1" BorderBrush="LightGray" SnapsToDevicePixels="True" Background="White">
+                                    <ComboBox   Background="{StaticResource colorFondo}" x:Name="productos"  BorderThickness="0">
+                                        <ComboBoxItem >GRUPO-A</ComboBoxItem>
+                                        <ComboBoxItem >GRUPO-B</ComboBoxItem>
+                                    </ComboBox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel Margin="10">
+                                <Label FontWeight="Bold"   HorizontalAlignment="Left">PUNTO PEDIDO</Label>
+                                <DockPanel LastChildFill="False">
+                                    <RadioButton Margin="5" Background="#009432" x:Name="punto_pedido_si" Content="Si"></RadioButton>
+                                    <RadioButton Margin="5" Background="#009432" x:Name="punto_pedido_no" Content="No"></RadioButton>
+                                </DockPanel>
+                            </StackPanel>
+                            <StackPanel Margin="10">
+                                <Label FontWeight="Bold" HorizontalAlignment="Left">CARAS HORIZONTALES</Label>
+                                <Border Padding="5" CornerRadius="5"  BorderThickness="1" BorderBrush="LightGray" SnapsToDevicePixels="True" Background="White">
+                                    <ComboBox   Background="{StaticResource colorFondo}" x:Name="cantidad_caras_horizontales"  BorderThickness="0">
+                                        <ComboBoxItem >GRUPO-A</ComboBoxItem>
+                                        <ComboBoxItem >GRUPO-B</ComboBoxItem>
+                                    </ComboBox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel Margin="10">
+                                <Label FontWeight="Bold" HorizontalAlignment="Left">CARAS VERTICALES</Label>
+                                <Border Padding="5" CornerRadius="5"  BorderThickness="1" BorderBrush="LightGray" SnapsToDevicePixels="True" Background="White">
+                                    <ComboBox   Background="{StaticResource colorFondo}" x:Name="cantidad_caras_verticales"  BorderThickness="0">
+                                        <ComboBoxItem >Cara\1</ComboBoxItem>
+                                        <ComboBoxItem >Cara\2</ComboBoxItem>
+                                    </ComboBox>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <StackPanel Margin="10">
+                                <Label FontWeight="Bold" HorizontalAlignment="Left">PROFUNDIDAD</Label>
+                                <Border Padding="5" CornerRadius="5"  BorderThickness="1" BorderBrush="LightGray" SnapsToDevicePixels="True" Background="White">
+                                    <TextBox  CharacterCasing="Upper" x:Name="profundidad"   Style="{x:Null}" Background="Transparent" BorderThickness="0"></TextBox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel Margin="10">
+                                <Label FontWeight="Bold" HorizontalAlignment="Left">CAPACIDAD MÁXIMA</Label>
+                                <Border Padding="5" CornerRadius="5"  BorderThickness="1" BorderBrush="LightGray" SnapsToDevicePixels="True" Background="White">
+                                    <ComboBox   Background="{StaticResource colorFondo}" x:Name="capacidad_max"  BorderThickness="0">
+                                        <ComboBoxItem >1</ComboBoxItem>
+                                        <ComboBoxItem >2</ComboBoxItem>
+                                    </ComboBox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel Margin="10">
+                                <Label FontWeight="Bold" HorizontalAlignment="Left">CAPACIDAD MÍNIMA</Label>
+                                <Border Padding="5" CornerRadius="5"  BorderThickness="1" BorderBrush="LightGray" SnapsToDevicePixels="True" Background="White">
+                                    <ComboBox   Background="{StaticResource colorFondo}" x:Name="capacidad_min"  BorderThickness="0">
+                                        <ComboBoxItem >GRUPO-A</ComboBoxItem>
+                                        <ComboBoxItem >GRUPO-B</ComboBoxItem>
+                                    </ComboBox>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                        <Button Margin="10" Cursor="Hand" x:Name="btn_limpiar_prod_anaquel" BorderBrush="Transparent"    Foreground="#f1f2f6"   Width="90" Style="{x:Null}" Content="LIMPIAR">
+                            <Button.Template >
+                                <ControlTemplate TargetType="{x:Type Button}" >
+                                    <Border Padding="5" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2" CornerRadius="5">
+                                        <Border.Background>
+                                            <Brush>#009432</Brush>
+                                        </Border.Background>
+                                        <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button Margin="10" Cursor="Hand" x:Name="btn_agregar_prod_anaquel" BorderBrush="Transparent"    Foreground="#f1f2f6"   Width="90" Style="{x:Null}" Content="AGREGAR">
+                            <Button.Template >
+                                <ControlTemplate TargetType="{x:Type Button}" >
+                                    <Border Padding="5" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2" CornerRadius="5">
+                                        <Border.Background>
+                                            <Brush>#009432</Brush>
+                                        </Border.Background>
+                                        <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Page>

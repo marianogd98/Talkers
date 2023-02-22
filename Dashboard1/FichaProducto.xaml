@@ -1,0 +1,350 @@
+﻿<Window x:Class="Dashboard1.FichaProducto"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        xmlns:local="clr-namespace:Dashboard1"
+        mc:Ignorable="d"
+        Title="Ficha Producto" Height="750" Width="1050" WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0" LastChildFill="False"  Background="#009432">
+            <Label   Padding="18" Foreground="#f1f2f6" >DATOS MAESTROS DEL PRODUCTO</Label>
+            <materialDesign:PackIcon Kind="CardText" Width="25" Height="auto" Foreground="White"  VerticalAlignment="Center"/>
+        </DockPanel>
+        <Grid Grid.Row="1" Margin="15" VerticalAlignment="Center" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition ></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <Label FontSize="15" Foreground="#009432"  Margin="0,0,50,0">Producto</Label>
+                <DockPanel Margin="5">
+                    <Label Width="120">Cód.Producto</Label>
+                    <TextBox x:Name="cod_prod" Style="{x:Null}" Height="18"></TextBox>
+                </DockPanel>
+                <DockPanel Margin="5">
+                    <Label Width="120">Descripción</Label>
+                    <TextBox x:Name="descripcion" Style="{x:Null}" Height="18"></TextBox>
+                </DockPanel>
+                <DockPanel Margin="5">
+                    <Label Width="120">Departamento</Label>
+                    <TextBox x:Name="departamento" Style="{x:Null}" Height="18"></TextBox>
+                </DockPanel>
+                <DockPanel Margin="5">
+                    <Label Width="120">Cód.Balanza</Label>
+                    <TextBox x:Name="cod_balanza" Style="{x:Null}" Height="18"></TextBox>
+                </DockPanel>
+            </StackPanel>
+            <StackPanel Grid.Column="1" HorizontalAlignment="Center" Margin="81,35,75,0" Width="182">
+                <DockPanel Margin="5">
+                    <Label Width="90">Pesado</Label>
+                    <DockPanel>
+                        <CheckBox IsChecked="False" x:Name="pesado_si" Background="#009432"></CheckBox>
+                        <Label>Si</Label>
+                    </DockPanel>
+                    <DockPanel>
+                        <CheckBox IsChecked="False" x:Name="pesado_no" Background="#009432"></CheckBox>
+                        <Label>No</Label>
+                    </DockPanel>
+                </DockPanel>
+                <!--<DockPanel Margin="5">
+                    <Label Width="90">Regulado</Label>
+                    <DockPanel>
+                        <CheckBox IsChecked="False" x:Name="regulado_si" Background="#009432"></CheckBox>
+                        <Label>Si</Label>
+                    </DockPanel>
+                    <DockPanel>
+                        <CheckBox IsChecked="False" x:Name="regulado_no" Background="#009432"></CheckBox>
+                        <Label>No</Label>
+                    </DockPanel>
+                </DockPanel>-->
+                <DockPanel Margin="5">
+                    <Label Width="90">Estatus</Label>
+                    <DockPanel>
+                        <CheckBox  IsChecked="False" x:Name="estatus_si" Background="#009432"></CheckBox>
+                        <Label>Si</Label>
+                    </DockPanel>
+                    <DockPanel>
+                        <CheckBox IsChecked="False" x:Name="estatus_no" Background="#009432"></CheckBox>
+                        <Label>No</Label>
+                    </DockPanel>
+                </DockPanel>
+                <!--<DockPanel Margin="5">
+                    <Label Width="90">Activo Venta</Label>
+                    <DockPanel>
+                        <CheckBox IsChecked="False" x:Name="activo_venta_si" Background="#009432"></CheckBox>
+                        <Label>Si</Label>
+                    </DockPanel>
+                    <DockPanel>
+                        <CheckBox IsChecked="False" x:Name="activo_venta_no" Background="#009432"></CheckBox>
+                        <Label>No</Label>
+                    </DockPanel>
+                </DockPanel>-->
+            </StackPanel>
+            <StackPanel Grid.Column="2" >
+                <StackPanel Margin="5">
+                    <Label Width="Auto" BorderThickness="0">Código de barras</Label>
+                    <TextBox x:Name="cod_barra" Style="{x:Null}"  Margin="0,0,55,0"/>
+                    <Button  Cursor="Hand" Click="mostrar_cod_barra_Click"  x:Name="mostrar_cod_barra" BorderBrush="Snow" HorizontalAlignment="Right" Margin="0,10,61,0"  Foreground="#f1f2f6"   Width="100" Style="{x:Null}" Content="Mostrar Cod.Barra">
+                        <Button.Template >
+                            <ControlTemplate TargetType="{x:Type Button}" >
+                                <Border Padding="5" BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="2" CornerRadius="5">
+                                    <Border.Background>#009432</Border.Background>
+                                    <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" ></ContentPresenter>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+                <StackPanel   x:Name="stack_cod_bar"  Margin="10" Visibility="Hidden">
+                    <Image x:Name="image_bar"  />
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+                        <Button Cursor="Hand" x:Name="imprimir" Click="imprimir_Click"  BorderBrush="Snow" HorizontalAlignment="Right"   Foreground="#f1f2f6"   Width="100" Style="{x:Null}" Content="Imprimir">
+                            <Button.Template >
+                                <ControlTemplate TargetType="{x:Type Button}" >
+                                    <Border Padding="5" BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="2" CornerRadius="5">
+                                        <Border.Background>#009432</Border.Background>
+                                        <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" ></ContentPresenter>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <DockPanel Margin="5">
+                            <Label> Cantidad a imprimir</Label>
+                            <ComboBox x:Name="cantidad_imprimir" Margin="5" Style="{x:Null}"  BorderBrush="Black" Width="50" Height="20" ></ComboBox>
+                        </DockPanel>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        <TabControl Grid.Row="2" Padding="10"  >
+            <TabItem Header="General" >
+                <ScrollViewer>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Margin="5" Grid.Column="0">
+                            <!--<DockPanel Margin="5">
+                                <Label Width="80">Costo</Label>
+                                <TextBox Style="{x:Null}" Height="18"></TextBox>
+                            </DockPanel>-->
+                            <!--<DockPanel Margin="5">
+                                <Label Width="80">Cantidad</Label>
+                                <TextBox Style="{x:Null}" Height="18"></TextBox>
+                            </DockPanel>-->
+                            <DockPanel Margin="5">
+                                <Label Width="80">Precio $</Label>
+                                <TextBox x:Name="precio_detal" Style="{x:Null}" Height="18"></TextBox>
+                            </DockPanel>
+                            <DockPanel Margin="5">
+                                <Label Width="80">Precio Bs</Label>
+                                <TextBox x:Name="precio_detal_bs" Style="{x:Null}" Height="18"></TextBox>
+                            </DockPanel>
+                            <!--<DockPanel Margin="5">
+                                <Label Width="80">Precio Mayor</Label>
+                                <TextBox x:Name="precio_mayor" Style="{x:Null}" Height="18"></TextBox>
+                            </DockPanel>-->
+                            <DockPanel Margin="5">
+                                <Label Width="80">P.Oferta $</Label>
+                                <TextBox x:Name="precio_oferta" Style="{x:Null}" Height="18"></TextBox>
+                            </DockPanel>
+                            <DockPanel Margin="5">
+                                <Label Width="80">P.Oferta Bs</Label>
+                                <TextBox x:Name="precio_oferta_bs" Style="{x:Null}" Height="18"></TextBox>
+                            </DockPanel>
+                            <DockPanel Margin="5">
+                                <Label Width="80">Descuento</Label>
+                                <TextBox x:Name="descuento" Style="{x:Null}" Height="18"></TextBox>
+                            </DockPanel>
+                            <DockPanel Margin="5">
+                                <Label Width="150">Fecha Oferta Inicial</Label>
+                                <DatePicker x:Name="fechaOfertaInicial"></DatePicker>
+                            </DockPanel>
+                            <DockPanel Margin="5">
+                                <Label Width="150">Fecha Oferta Final</Label>
+                                <DatePicker x:Name="fechaOfertaFinal"></DatePicker>
+                            </DockPanel>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Margin="5">
+                            <DockPanel Margin="5">
+                                <Label Width="80">Cod.Moneda</Label>
+                                <ComboBox x:Name="moneda" Style="{x:Null}" Height="22" BorderThickness="0,0,0,1" >
+                                    <ComboBoxItem>Bolívares</ComboBoxItem>
+                                    <ComboBoxItem>Extranjera</ComboBoxItem>
+                                </ComboBox>
+                            </DockPanel>
+                            <DockPanel Margin="5">
+                                <Label Width="80">Tipo</Label>
+                                <ComboBox x:Name="tipo" Style="{x:Null}" Height="22" BorderThickness="0,0,0,1" >
+                                    <ComboBoxItem>Normal</ComboBoxItem>
+                                    <ComboBoxItem>Combo</ComboBoxItem>
+                                </ComboBox>
+                            </DockPanel>
+                            <!--<DockPanel Margin="5">
+                                <Label Width="80">Precio Dólar</Label>
+                                <TextBox x:Name="precio_dolar" Style="{x:Null}" Height="18"></TextBox>
+                            </DockPanel>-->
+                            <DockPanel Margin="5">
+                                <Label Width="80">Impuesto</Label>
+                                <TextBox x:Name="impuesto" Style="{x:Null}" Height="18"></TextBox>
+                            </DockPanel>
+                            <DockPanel Margin="5">
+                                <Label Width="80">Impuesto.V</Label>
+                                <TextBox x:Name="Impuesto_valor" Style="{x:Null}" Height="18"></TextBox>
+                            </DockPanel>
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Dimensiones" IsEnabled="False">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Style="{x:Null}" Margin="20" Grid.Column="0" Height="200">
+                        <GroupBox.HeaderTemplate>
+                            <DataTemplate>
+                                <Border Margin="20,0,0,0"  Padding="5,0,5,0" Background="#009432" CornerRadius="5"   BorderThickness="1"  SnapsToDevicePixels="True"  >
+                                    <Label  Foreground="White">Frentes</Label>
+                                </Border>
+                            </DataTemplate>
+                        </GroupBox.HeaderTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Margin="15" Grid.Column="0">
+                                <StackPanel Margin="0,10,0,10">
+                                    <Label HorizontalAlignment="Left" >Frentes Horizontales</Label>
+                                    <TextBox Style="{x:Null}" Height="18" BorderThickness="0,0,0,1" Margin="5,5,0,0"></TextBox>
+                                </StackPanel>
+                                <StackPanel Margin="0,10,0,10">
+                                    <Label HorizontalAlignment="Left" >Capacidad Real</Label>
+                                    <TextBox Style="{x:Null}" Height="18" BorderThickness="0,0,0,1" Margin="5,5,0,0"></TextBox>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Margin="15" Grid.Column="1">
+                                <StackPanel Margin="0,10,0,10">
+                                    <Label HorizontalAlignment="Left" >Frentes Verticales</Label>
+                                    <TextBox Style="{x:Null}" Height="18" BorderThickness="0,0,0,1" Margin="5,5,0,0"></TextBox>
+                                </StackPanel>
+                                <StackPanel Margin="0,10,0,10">
+                                    <Label HorizontalAlignment="Left" >Capacidad Teórica</Label>
+                                    <TextBox Style="{x:Null}" Height="18" BorderThickness="0,0,0,1" Margin="5,5,0,0"></TextBox>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox  Style="{x:Null}" Margin="20" Grid.Column="1" Height="200">
+                        <GroupBox.HeaderTemplate>
+                            <DataTemplate>
+                                <Border Margin="20,0,0,0"  Padding="5,0,5,0" Background="#009432" CornerRadius="5"   BorderThickness="1"  SnapsToDevicePixels="True"  >
+                                    <Label  Foreground="White">Orientación y Presentación</Label>
+                                </Border>
+                            </DataTemplate>
+                        </GroupBox.HeaderTemplate>
+                        <StackPanel  Margin="15">
+                            <StackPanel Margin="0,10,0,10">
+                                <Label HorizontalAlignment="Left" >Orientación del Producto</Label>
+                                <ComboBox Style="{x:Null}" Height="18" BorderThickness="0,0,0,1" Margin="5,5,0,0"></ComboBox>
+                            </StackPanel>
+                            <StackPanel Margin="0,10,0,10">
+                                <Label HorizontalAlignment="Left" >Modo de Presentación del Producto</Label>
+                                <ComboBox Style="{x:Null}" Height="18" BorderThickness="0,0,0,1" Margin="5,5,0,0"></ComboBox>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Datos de reposición"  IsEnabled="False">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="350"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" Margin="20" VerticalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Margin="15">
+                            <StackPanel Margin="0,10,0,10" Grid.Column="0">
+                                <Label HorizontalAlignment="Left" >Alto*</Label>
+                                <TextBox Style="{x:Null}" Height="18"  Margin="5,5,0,0"></TextBox>
+                            </StackPanel>
+                            <StackPanel Margin="0,10,0,10" >
+                                <Label HorizontalAlignment="Left" >Marca</Label>
+                                <TextBox Style="{x:Null}" Height="18"  Margin="5,5,0,0"></TextBox>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Margin="15">
+                            <StackPanel Margin="0,10,0,10" Grid.Column="0">
+                                <Label HorizontalAlignment="Left" >Ancho*</Label>
+                                <TextBox Style="{x:Null}" Height="18"  Margin="5,5,0,0"></TextBox>
+                            </StackPanel>
+                            <StackPanel Margin="0,10,0,10">
+                                <Label HorizontalAlignment="Left" >Proveedor</Label>
+                                <TextBox Style="{x:Null}" Height="18"  Margin="5,5,0,0"></TextBox>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" Margin="15">
+                            <StackPanel Margin="0,10,0,10" Grid.Column="1">
+                                <Label HorizontalAlignment="Left" >Profundidad*</Label>
+                                <TextBox Style="{x:Null}" Height="18"  Margin="5,5,0,0"></TextBox>
+                            </StackPanel>
+                            <StackPanel Margin="0,10,0,10" Grid.Column="2">
+                                <Label HorizontalAlignment="Left" >Peso/Volumen/Unidades</Label>
+                                <TextBox Style="{x:Null}" Height="18"  Margin="5,5,0,0"></TextBox>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                    <Image Grid.Column="1"  Source=".\Resources\Image\ImageDefault.png" Width="200" Height="200"></Image>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Datos de inventario" IsEnabled="False"></TabItem>
+            <TabItem Header="Datos de planificación" IsEnabled="False"></TabItem>
+            <TabItem Header="Datos de producción" IsEnabled="False"></TabItem>
+            <TabItem Header="Propiedades" IsEnabled="False"></TabItem>
+            <TabItem Header="Comentarios" IsEnabled="False"></TabItem>
+            <TabItem Header="Anexos" IsEnabled="False"></TabItem>
+        </TabControl>
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <!--<Button Cursor="Hand"  BorderBrush="Snow"  HorizontalAlignment="Left" Margin="10"  Foreground="#f1f2f6"   Width="100" Style="{x:Null}" Content="OK"  x:Name="ok_btn">
+                <Button.Template >
+                    <ControlTemplate TargetType="{x:Type Button}" >
+                        <Border Padding="5" BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="2" CornerRadius="5">
+                            <Border.Background>#009432</Border.Background>
+                            <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" ></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>-->
+            <Button Click="volver_btn_Click" Cursor="Hand"  BorderBrush="Snow"  HorizontalAlignment="Left" Margin="10"  Foreground="#f1f2f6"   Width="100" Style="{x:Null}" Content="VOLVER"  x:Name="volver_btn">
+                <Button.Template >
+                    <ControlTemplate TargetType="{x:Type Button}" >
+                        <Border Padding="5" BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="2" CornerRadius="5">
+                            <Border.Background>#009432</Border.Background>
+                            <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" ></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
+    </Grid>
+
+</Window>

@@ -1,0 +1,156 @@
+﻿<Page x:Class="Dashboard1.ProductosActualizados"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Dashboard1"
+      mc:Ignorable="d" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ProductosActualizados">
+
+    <Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="120"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="210"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="300"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0"  Background="#fab1a0" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3" Margin="15">
+                    <StackPanel >
+                        <Label  Margin="5,0,0,0" Foreground="Gray">Seleccionar el tipo de moneda</Label>
+                        <StackPanel Orientation="Horizontal">
+                            <RadioButton Background="#d35400" x:Name="chkActTodosDolar"  Margin="10,0,0,0" Foreground="Gray" Content="Dólares"></RadioButton>
+                            <RadioButton Background="#d35400" x:Name="chkActTodosBs" Margin="10,0,0,0" Foreground="Gray" Content="Bolívares"></RadioButton>
+                        </StackPanel>
+                        <Button Cursor="Hand" x:Name="btnActualizarTodo" Click="BtnActualizaTodo_Click"  BorderBrush="Transparent" HorizontalAlignment="Right" Margin="10"  Foreground="#f1f2f6"   Width="90" Style="{x:Null}" Content="Actualizar">
+                            <Button.Template >
+                                <ControlTemplate TargetType="{x:Type Button}" >
+                                    <Border Padding="5" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2" CornerRadius="5">
+                                        <Border.Background>
+                                            <Brush>#d35400</Brush>
+                                        </Border.Background>
+                                        <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+                </Border>
+                <Border Grid.Column="1"  Background="#fab1a0" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3" Margin="15">
+                    <StackPanel Margin="10">
+                        <Border Padding="5" CornerRadius="5"  BorderThickness="1" BorderBrush="LightGray" SnapsToDevicePixels="True" Background="White">
+                            <TextBox CharacterCasing="Upper" x:Name="txtBuscar" TextChanged="TxtBuscar_TextChanged" KeyDown="TxtBuscar_KeyDown" Style="{x:Null}" Background="Transparent" BorderThickness="0"></TextBox>
+                        </Border>
+                        <Button Cursor="Hand" x:Name="btnMNuevo" BorderBrush="Transparent"  Click="Button_Click"  HorizontalAlignment="Right" Margin="10" Foreground="#f1f2f6"   Width="90" Style="{x:Null}" Content="Buscar">
+                            <Button.Template >
+                                <ControlTemplate TargetType="{x:Type Button}" >
+                                    <Border Padding="5" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2" CornerRadius="5">
+                                        <Border.Background>
+                                            <Brush>#d35400</Brush>
+                                        </Border.Background>
+                                        <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+                </Border>
+                <Border Visibility="Hidden" Grid.Column="2"  Background="#C8E6C9" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3" Margin="15">
+                    <StackPanel >
+                        <CheckBox x:Name="chkTodos" Background="#1D7F31"  Margin="8" Content="Imprimir todo"></CheckBox>
+                        <StackPanel Orientation="Horizontal">
+                            <RadioButton  Background="#1D7F31" Margin="10,0,0,0" Foreground="Gray" Content="Pequeño"></RadioButton>
+                            <RadioButton  Background="#1D7F31" Margin="10,0,0,0" Foreground="Gray" Content="Mediano"></RadioButton>
+                            <RadioButton  Background="#1D7F31" Margin="10,0,0,0" Foreground="Gray" Content="Grande"></RadioButton>
+                        </StackPanel>
+                        <Label FontSize="8" Margin="8,0" Foreground="Gray">Tamaño de Impresión</Label>
+                        <!--<Button Cursor="Hand" x:Name="btnImprimirTodo" Click="BtnImprimirTodo_Click" BorderBrush="Transparent"  HorizontalAlignment="Right"  Foreground="#f1f2f6" Margin="0,-15,15,0"  Width="90" Style="{x:Null}" Content="Imprimir">
+                            <Button.Template >
+                                <ControlTemplate TargetType="{x:Type Button}" >
+                                    <Border Padding="5" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2" CornerRadius="5">
+                                        <Border.Background>
+                                            <Brush>#009432</Brush>
+                                        </Border.Background>
+                                        <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>-->
+                    </StackPanel>
+                </Border>
+                <Button Cursor="Hand" x:Name="refrescar_btn" Click="refrescar_btn_Click" BorderBrush="Transparent" Grid.Column="2" HorizontalAlignment="Center" Margin="10" Foreground="#f1f2f6" Height="50"  Width="50" Style="{x:Null}" Content="Buscar">
+                    <Button.Template >
+                        <ControlTemplate TargetType="{x:Type Button}" >
+                            <Border Padding="5" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2" CornerRadius="5">
+                                <Border.Background>
+                                    <Brush>#d35400</Brush>
+                                </Border.Background>
+                                <materialDesign:PackIcon  Height="30" Width="30" VerticalAlignment="Center" HorizontalAlignment="Center" Kind="Reload" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+            <!--<ScrollViewer Width="800" Grid.Row="1" HorizontalScrollBarVisibility="Auto">-->
+            <DataGrid FontSize="12" Margin="30,0,10,40" Grid.Row="1"  BorderBrush="Transparent"  AutoGenerateColumns="False"  x:Name="dgHabladores"   AlternatingRowBackground="#DEDEDE"   AlternationCount="2">
+                <DataGrid.Columns >
+                    <DataGridTextColumn Header="Código"  Binding="{Binding CodigoSap}"/>
+                    <DataGridTextColumn Width="300"  Header="Descripción" Binding="{Binding DescripcionL}"  />
+                    <DataGridTextColumn Header="Precio" Binding="{Binding  Precio}" />
+                    <DataGridTextColumn Header="Tipo" Binding="{Binding  PesadoDescrip}" />
+                    <DataGridTextColumn Header="% Iva"  Binding="{Binding Iva}" />
+                    <DataGridTextColumn Header="Total" Binding="{Binding Total}" />
+                    <DataGridTextColumn Header="Cod. Barra"  Binding="{Binding Codigo_barra}" />
+                    <DataGridTextColumn Header="Fecha Actualización"  Binding="{Binding Fecha}" />
+                    <DataGridTemplateColumn Header="Tam.Impresión" Visibility="Hidden">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <DockPanel>
+                                    <RadioButton Margin="2" Background="#1D7F31" Content="P"></RadioButton>
+                                    <RadioButton Margin="2" Background="#1D7F31" Content="M"></RadioButton>
+                                    <RadioButton Margin="2" Background="#1D7F31" Content="G"></RadioButton>
+                                </DockPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Click="PrintHablador" Background="#d35400" BorderThickness="0">
+                                    <DockPanel>
+                                        <materialDesign:PackIcon Kind="Printer"/>
+                                        <TextBlock Text="Imp" TextAlignment="Left"/>
+                                    </DockPanel>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button  Click="Button_Click_1" Background="#d35400" BorderThickness="0">
+                                    <DockPanel>
+                                        <materialDesign:PackIcon Kind="Barcode"/>
+                                        <TextBlock Text="Bar" TextAlignment="Left"/>
+                                    </DockPanel>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+                <DataGrid.Resources>
+                    <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="#fab1a0" />
+                    </Style>
+                </DataGrid.Resources>
+            </DataGrid>
+            <!--</ScrollViewer>-->
+        </Grid>
+    </Grid>
+</Page>
